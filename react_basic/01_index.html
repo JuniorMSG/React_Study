@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- babel unpkg CDN   -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<div id="babel"></div>
+<script>
+    function reactHelloWorld() {
+        const rootElement = document.getElementById('root');
+        const element = React.createElement('h1', {className: 'greeting'}, 'Hello, world!');
+        ReactDOM.render(element, rootElement);
+    }
+    reactHelloWorld();
+</script>
+
+<script type="text/babel">
+    function babelHelloWorld() {
+        const rootElement = document.getElementById('babel');
+
+        const text = 'Babel world!';
+        const title_class = 'greeting'
+
+        const props = {
+            className: title_class,
+            text: text,
+            children: 'children text'
+        }
+
+        const customH1 = <h1 {...props}>{props.text}</h1>; // 스프레드 연산자
+        // const customH1 = <h1 className={props.className} children={props.children}>{props.text}</h1>;
+        ReactDOM.render(customH1, rootElement);
+    }
+    babelHelloWorld();
+</script>
+
+</body>
+</html>
