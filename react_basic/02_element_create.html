@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    const rootElement = document.getElementById('root');
+    const paint = (title, desciptions) => (
+        <>
+            <h1>{title}</h1>
+            <p>{desciptions}</p>
+        </>
+    );
+
+    const Paint = ({title, desciptions}) => (
+        <>
+            <h1>{title}</h1>
+            <p>{desciptions}</p>
+        </>
+    );
+    const element = (
+        <>
+            <Paint title='1-Say, world!' desciptions='This is a description.'/>
+            {paint('2-Say!', '2-Say! This is a description.')},
+            {paint('3-Say!', '3-Say! This is a description.')},
+        </>
+    );
+
+    ReactDOM.render(element, rootElement);
+
+    const Text = ({text}) => {
+        if (text.charAt(0) === text.charAt(0).toUpperCase()) {
+            return <h1>{text}</h1>;
+        } else {
+            return <h3>{text}</h3>;
+        }
+    }
+
+    function Number({numbers, selected}) {
+        return selected ? <h1>{numbers}</h1> : <h3>{numbers}</h3>;
+    }
+
+    const element2 = (
+        <>
+            <Text text='Hello, world!'/>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => (
+            <Number numbers={number} key={number} selected={number % 2 === 0}/>
+            ))}
+        </>
+    );
+    ReactDOM.render(element2, rootElement);
+
+</script>
+
+</body>
+</html>

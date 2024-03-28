@@ -12,6 +12,7 @@
 <body>
 <div id="root"></div>
 <div id="babel"></div>
+<div id="root2"></div>
 <script>
     function reactHelloWorld() {
         const rootElement = document.getElementById('root');
@@ -39,6 +40,29 @@
         ReactDOM.render(customH1, rootElement);
     }
     babelHelloWorld();
+</script>
+
+<script type="text/babel">
+    function reactFragment() {
+        const rootElement = document.getElementById('root2');
+
+        const element = (
+            <React.Fragment>
+                <h1>Hello, world!</h1>
+                <h2>It is {new Date().toLocaleTimeString()}.</h2>
+            </React.Fragment>
+        );
+
+        const element2 = (
+            <>
+                <h1>Hello, world! 22</h1>
+                <h2>It is {new Date().toLocaleTimeString()}.</h2>
+            </>
+        );
+        ReactDOM.render(element, rootElement);
+        ReactDOM.render(element2, rootElement);
+    }
+    reactFragment();
 </script>
 
 </body>
