@@ -31,7 +31,7 @@ React 앨리먼트는 불변객체(immutable)입니다.
 변경 판단 및 반영은 리액트가 알아서 한다.  
 
 
-### 재조정 (Reconciliation)[(https://ko.reactjs.org/docs/reconciliation.html)]
+### 재조정 (Reconciliation)(https://ko.reactjs.org/docs/reconciliation.html)
 * 앨리먼트 타입이 바뀌면?
   * 이전 앨리먼트는 버리고 새로 그린다.
 * 앨리먼트 타입이 같다면? 
@@ -57,4 +57,4 @@ DOM : 논리 트리 / 웹 페이지의 구조화된 표현
 useXXX 라고 불리는걸 리액트에서 훅이라고 부름 
 
 ### Custom Hook
-![04_01_customhook.png](04_01_customhook.png)
+![04_01_customhook](https://github.com/JuniorMSG/React_Study/assets/22822369/aff302e2-1f2e-48b4-97c2-0661d70ec315)
