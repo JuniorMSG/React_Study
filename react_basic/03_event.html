@@ -12,23 +12,27 @@
 <div id="root"></div>
 <script type="text/babel">
     const rootElement = document.getElementById('root');
-    const state = { keyword: "", typing: false, result: "" };
+    const state = {keyword: "", typing: false, result: ""};
 
     const App = () => {
         function handleChange(event) {
-            setState({ keyword: event.target.value});
+            setState({typing: true, keyword: event.target.value});
         }
+
         function handleClick() {
             setState({
                 typing: false,
-                result: `Searching... ${state.keyword}`
+                result: `Find... ${state.keyword}`
             });
         }
+
         return (
             <>
                 <input onChange={handleChange}/>
-                <button>search={handleChange()}</button>
-                <p>Looking...</p>
+                <button onClick={handleClick}>search</button>
+                <p>
+                    {state.typing ? `Typing... ${state.keyword}...` : state.result}
+                </p>
             </>
 
         )
@@ -38,10 +42,31 @@
         Object.assign(state, newState);
         render()
     }
+
     function render() {
-        ReactDOM.render(<App/>, rootElement);
+        ReactDOM.render(<App />, rootElement);
     }
     render()
+
+
+    const target = { a: 1, b: 2 };
+    const source = { b: 4, c: 5 };
+
+    const returnedTarget = Object.assign(target, source);
+
+    console.log(target);
+    // Expected output: Object { a: 1, b: 4, c: 5 }
+
+    console.log(returnedTarget === target);
+    // Expected output: true
+
+    Object.assign(returnedTarget, { c: 7});
+    console.log(target);
+    console.log(source);
+    console.log(returnedTarget);
+
+
+
 </script>
 
 </body>

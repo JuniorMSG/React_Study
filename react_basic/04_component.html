@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    const rootElement = document.getElementById('root');
+    const state = {keyword: "", typing: false, result: ""};
+
+    function useLocalStorage(itemName, vaule = "") {
+        const [state, setState] = React.useState(() => {
+            return window.localStorage.getItem(itemName) || vaule;
+        });
+
+        React.useEffect(() => {
+            window.localStorage.setItem(itemName, state);
+        }, [state]);
+
+
+        return [state, setState];
+    }
+
+    const App = () => {
+        // 리액트 자체 훅 사용
+        // const [keyword, setKeyword] = React.useState(() => {
+        //     return window.localStorage.getItem('keyword') || ""
+        // });
+        // const [result, setResult] = React.useState("");
+        // const [typing, setTyping] = React.useState(false);
+
+        // 커스텀 훅 사용
+        const [keyword, setKeyword] = useLocalStorage('keyword');
+        const [result, setResult] = useLocalStorage('result')
+        const [typing, setTyping] = useLocalStorage('typing')
+
+
+
+
+        console.log("render")
+
+        React.useEffect(() => {
+            console.log("Effect")
+            window.localStorage.setItem('keyword', keyword);
+        }, [keyword])
+
+        function handleChange(event) {
+            // setState({typing: true, keyword: event.target.value});
+            setKeyword(event.target.value);
+            setTyping(true);
+        }
+
+        function handleClick() {
+            setTyping(false);
+            setResult(`Find... ${keyword}`);
+        }
+
+        return (
+            <>
+                <input onChange={handleChange} value={keyword}/>
+                <button onClick={handleClick}>search</button>
+                <p>
+                    {typing ? `Typing... ${keyword}...` : result}
+                </p>
+            </>
+
+        )
+    }
+
+    ReactDOM.render(<App/>, rootElement);
+
+</script>
+
+</body>
+</html>

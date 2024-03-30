@@ -47,3 +47,14 @@ React 앨리먼트는 불변객체(immutable)입니다.
 * on{event} (CamelCase)
 
 
+## Component ? Element ? DOM ?
+DOM : 논리 트리 / 웹 페이지의 구조화된 표현
+컴포넌트 : 엘리먼트의 집합 / 재사용 가능한 UI 조각
+엘리먼트 : DOM의 노드 / 
+
+### useState 
+상태값을 관리해주는 훅 
+useXXX 라고 불리는걸 리액트에서 훅이라고 부름 
+
+### Custom Hook
+![04_01_customhook.png](04_01_customhook.png)
