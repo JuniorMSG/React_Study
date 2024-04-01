@@ -13,8 +13,27 @@
 <div id="root"></div>
 <script type="text/babel">
     const App = () => {
-        return <>
+        const inputRef = React.useRef();
+        const divRef = React.useRef();
+
+        React.useEffect(() => {
+            // document.getElementById("input").focus()
+            inputRef.current.focus();
+
+            setTimeout(() => {
+                divRef.current.style.backgroundColor = "pink";
+            }, 1000);
+        }, []);
+
+        return (
+            <>
+                <input ref={inputRef}/>
+                <div ref={divRef}
+                     style={{ width: 100, height: 100, backgroundColor: "brown" }}>
+                </div>
+
         </>
+        );
     }
 
     ReactDOM.render(<App/>, document.getElementById('root'));

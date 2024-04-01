@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .button {
+            background-color: #04AA6D; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            margin: 1px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .Green {
+            background-color: #04AA6D;
+        }
+
+        /* Green */
+        .Blue {
+            background-color: #008CBA;
+        }
+
+        /* Blue */
+        .Red {
+            background-color: #f44336;
+        }
+
+        /* Red */
+        .Gray {
+            background-color: #e7e7e7;
+            color: black;
+        }
+
+        /* Gray */
+        .Black {
+            background-color: #555555;
+        }
+
+        /* Black */
+
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    const rootElement = document.getElementById('root');
+
+    function Button({classNam = "", color, style, ...rest}) {
+        return <button
+            className={`button ${color}`}
+            style={{fontSize: 15, backgroundColor: color, ...style}}
+            {...rest}
+        />
+    }
+
+
+    const element = (
+        <>
+            <Button color="Green" style={{borderRadius: "50%"}}>Green</Button>
+            <Button color="Blue" style={{borderRadius: 20, fontSize: 35}}>Blue</Button>
+            <Button color="Red">Red</Button>
+            <Button color="Gray">Gray</Button>
+            <Button color="Black">Black</Button>
+        </>
+    );
+
+    ReactDOM.render(element, rootElement);
+
+
+</script>
+
+</body>
+</html>
