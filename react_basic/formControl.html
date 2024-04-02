@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () => {
+        const [message, setMessage] = React.useState("");
+        const [phoneNumber, setPhoneNumber] = React.useState("");
+        const [firstName, setFirstName] = React.useState("");
+        const [lastName, setLastName] = React.useState("");
+        const [country, setCountry] = React.useState("");
+
+
+        const handleChange = (event) => {
+            // 기본 이벤트 실행하지 않도록 막음
+            console.dir(event.target);
+            const phoneNumber_target = event.target.value
+
+            console.log("(999" + phoneNumber_target)
+            if (phoneNumber_target.startsWith(0)){
+                setMessage("Phone Number is valid")
+                setPhoneNumber(phoneNumber_target);
+            } else if (phoneNumber_target.value.length === 0){
+                setMessage("")
+                setPhoneNumber("")
+
+            }
+            else {
+                setMessage("Phone number should start with 0")
+            }
+            setPhoneNumber(phoneNumber_target);
+
+        }
+
+        const handleSubmit = (event) => {
+            // 기본 이벤트 실행하지 않도록 막음
+            event.preventDefault();
+            console.dir(event.target);
+            const firstName = event.target.elements.fname.value;
+            const lastName = event.target.elements.lname.value;
+            const country = event.target.elements.country.value;
+            const phoneNumber = event.target.elements.phone.value;
+
+            alert(`First Name: ${firstName}\nLast Name: ${lastName} \nCountry: ${country}\nPhone: ${phoneNumber}`);
+            setFirstName(firstName);
+            setLastName(lastName);
+            setCountry(country);
+            setPhoneNumber(phoneNumber);
+
+        }
+
+
+
+        return <>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="fname">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name.."/>
+
+                    <label htmlFor="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname"
+                           placeholder="Your last name.."/>
+
+                    <label htmlFor="phone">Phone Number</label>
+                    <input type="text" id="phone" name="phone"
+                           placeholder="Your Phone" onChange={handleChange}
+                           value={phoneNumber}/>
+                    <p>{message}</p>
+
+
+                    <label htmlFor="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+        </>
+    }
+    ReactDOM.render(<App/>, document.getElementById('root'));
+</script>
+
+</body>
+</html>
