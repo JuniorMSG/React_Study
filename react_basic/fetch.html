@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    // fetch api
+    // 네트워크 통신
+    // https://developer.mozilla.org/ko/docs/Web/API/Fetch_API#%EA%B8%B0%EB%B3%B8_%EA%B0%9C%EB%85%90%EA%B3%BC_%EC%82%AC%EC%9A%A9_%EB%B0%A9%EB%B2%95
+    const rootElement = document.getElementById('root');
+    const App = () => {
+        const [data, setData] = React.useState("");
+
+        React.useEffect(() => {
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    setData(myJson.title);
+                })
+                .catch((error) => {
+                console.error(`error.message`);
+            });
+        }, []);
+
+
+        return (
+            <div>
+                <span>Auto</span>
+                <div>
+                    <span>{data.title}</span>
+                    <span>{data.complete}</span>
+                </div>
+            </div>
+        )
+    }
+    ReactDOM.render(<App/>, rootElement);
+
+</script>
+
+</body>
+</html>

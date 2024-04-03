@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+    const Id = ({handleIdChange}) => {
+        return (
+            <>
+                <label>ID: </label>
+                <input onChange={handleIdChange}/>
+            </>
+        )
+    }
+
+    const Password = ({handlePasswordChange}) => {
+        return (
+            <>
+                <label>PW </label>
+                <input type="password" onChange={handlePasswordChange}/>
+            </>
+        )
+    }
+
+    const App = () => {
+        const [id, setId] = React.useState("");
+        const [password, setPassword] = React.useState("");
+        const handleIdChange = (event) => {
+            setId(event.target.value);
+            console.log(`id : ${event.target.value.length > 0}`);
+        }
+        const handlePasswordChange = (event) => {
+            setPassword(event.target.value);
+            console.log(`password : ${event.target.value.length > 0}`);
+        }
+        const handleLoginClick = () => {
+            alert(`id : ${id}, password : ${password}`);
+        }
+
+        // 형제 컴포넌트의 상태가 궁금하면 부모로 lifting up 해야한다.
+        // Props drilling - 과도한 lifting은 drilling을 야기함
+        return <>
+            <Id handleIdChange={handleIdChange}/>
+            <br/>
+            <Password handlePasswordChange={handlePasswordChange}/>
+            <button disabled={id.length === 0 || password.length === 0}
+                    onClick={handleLoginClick}>
+                login
+            </button>
+        </>
+    }
+    ReactDOM.render(<App/>, document.getElementById('root'));
+</script>
+
+</body>
+</html>
