@@ -1,6 +1,21 @@
 <!-- TOC -->
+  * [Error Boundary](#error-boundary)
+    * [생명주기 메서드(lifecycle methods) 또는 Hook을 통해 구현됩니다:](#생명주기-메서드lifecycle-methods-또는-hook을-통해-구현됩니다)
+      * [static getDerivedStateFromError(error):](#static-getderivedstatefromerrorerror)
+      * [componentDidCatch(error, info):](#componentdidcatcherror-info)
+    * [사용되는 경우](#사용되는-경우)
+    * [장점](#장점-)
+  * [Fallback 처리란?](#fallback-처리란)
+  * [왜 Fallback 처리가 중요한가?](#왜-fallback-처리가-중요한가)
+  * [Fallback 전략](#fallback-전략)
+    * [1. **에러 메시지 제공**](#1-에러-메시지-제공)
+    * [2. **대체 컨텐츠 제공**](#2-대체-컨텐츠-제공)
+    * [3. **재시도 메커니즘 구현**](#3-재시도-메커니즘-구현)
+  * [구현 시 고려사항](#구현-시-고려사항)
 <!-- TOC -->
 
+
+[Blog](https://steadiness-dev-invest.tistory.com/195)
 ## Error Boundary
 
 React의 Error Boundary는 React 컴포넌트 트리 내에서 자식 컴포넌트의 JavaScript 에러를 잡아내고 처리하는 방법을 제공합니다.
