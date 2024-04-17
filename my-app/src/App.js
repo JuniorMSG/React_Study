@@ -9,13 +9,23 @@ import Condition from "./components/ConditionalRendering/Condition";
 import List from "./components/List/List";
 import ControlledComponent from "./components/Form/ControlledComponent";
 import UnControlledComponent from "./components/Form/UnControlledComponent";
+import ParentFirstComponent from "./components/ParentChild/ParentFirstComponent";
+
+import { MessageProvider } from './components/Context/MessageContext';
+import ParentComponent from './components/Context/ParentComponent';
 
 
 function App() {
   return (
     <div className="App">
-        {<UnControlledComponent />}
-        {<ControlledComponent />}
+
+        <MessageProvider>
+            <ParentComponent />
+        </MessageProvider>
+        {/*<ParentFirstComponent />*/}
+        {/*{<ParentSecondComponent />}*/}
+        {/*{<UnControlledComponent />}*/}
+        {/*{<ControlledComponent />}*/}
         {/*{<List />}*/}
         {/*{<Condition />}*/}
         {/*<Event />*/}
